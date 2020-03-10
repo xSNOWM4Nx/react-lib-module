@@ -1,26 +1,30 @@
-What is react-lib-module?
-===
-It's an open-source project written with React.
+# react-lib-module
+An open-source project written with React and TypeScript.
 
-This project represents my standard library for generic react components that I use in various other projects. It can be obtained from [npm](https://www.npmjs.com/~daniel.neuweiler) or distributed as a development package with the scripts.
+This project represents my standard library for generic react components that I use in various other projects. It can be obtained from [npm](https://www.npmjs.com/package/@daniel.neuweiler/react-lib-module) or distributed as a development package with the scripts.
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![npm version](https://img.shields.io/npm/v/@daniel.neuweiler/react-lib-module.svg)](https://www.npmjs.com/package/@daniel.neuweiler/react-lib-module)
+[![npm downloads](https://img.shields.io/npm/dt/@daniel.neuweiler/react-lib-module.svg)](https://www.npmjs.com/package/@daniel.neuweiler/react-lib-module)
+[![npm types](https://img.shields.io/npm/types/@daniel.neuweiler/react-lib-module.svg)](https://www.npmjs.com/package/@daniel.neuweiler/react-lib-module)
+[![node version](	https://img.shields.io/node/v/@daniel.neuweiler/react-lib-module.svg)](https://www.npmjs.com/package/@daniel.neuweiler/react-lib-module)
 
-## Packages 📦:
+## 📦 Packages:
 - [ts-lib-module](https://github.com/xSNOWM4Nx/ts-lib-module)
 - [TypeScript](https://github.com/microsoft/TypeScript)
 - [material-ui](https://github.com/mui-org/material-ui)
 
-## Features 🔮:
-- React: Using "Hooks", "Context" and other popular react patterns
-- Providing: Provides the application with various services and props
-- Components: Delivers a range of components that are used again and again
+## 🔮 Features:
+- Using "Hooks", "Context" and other popular React patterns.
+- Written entirely in TypeScript.
+- Provides the application with various services and props.
+- Delivers a range of components and functions that are used again and again.
+- Using styling components from the popular [material-ui](https://github.com/mui-org/material-ui) project.
 
-## Dev-Deploy ⌨️:
-- Use the "npm run devbuild" script to deploy the package to the other cloned react repositories.
-- The package is stored under "*/node_modules/@mymodules/react-lib-module" on the cloned target repositories.
+## ⌨️ Development:
+- Use the "devbuild_XXX" script to deploy the package to the corresponding cloned repositories. The package is then stored under "*/node_modules/@daniel.neuweiler/react-lib-module".
 
-## License 📑:
+## 📑 License:
 - MIT © [xSNOWM4Nx](https://github.com/xSNOWM4Nx)
 ---
 This project was bootstrapped with [create-react-library](https://github.com/transitive-bullshit/create-react-library).

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { ServiceProvider, IService } from '@mymodules/ts-lib-module';
+import { ServiceProvider, IService } from '@daniel.neuweiler/ts-lib-module';
 
 // Definition for context props
 export interface ServiceContextProps {

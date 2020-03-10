@@ -1,10 +1,17 @@
 {
-  "name": "react-lib-module",
-  "version": "1.0.0",
-  "description": "",
-  "author": "xSNOWM4Nx",
+  "name": "@daniel.neuweiler/react-lib-module",
+  "version": "0.1.0-alpha.1",
+  "description": "This project represents my standard library for generic react components that I use in various other projects.",
+  "author": "Daniel Neuweiler",
   "license": "MIT",
-  "repository": "xSNOWM4Nx/react-lib-module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xSNOWM4Nx/react-lib-module.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xSNOWM4Nx/react-lib-module/issues"
+  },
+  "homepage": "https://github.com/xSNOWM4Nx/react-lib-module",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -20,17 +27,19 @@
     "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build",
-    "devbuild": "npm.cmd run build && npm.cmd run copy:packagedata && npm.cmd run copy2:react-sky-map",
+    "devbuild_react-flight-tracker": "npm.cmd run build && npm.cmd run copy:packagedata && npm.cmd run copy2:react-flight-tracker",
     "copy:packagedata": "copyfiles package.json README.md dist",
-    "copy2:react-sky-map": "copyfiles -u 1 dist/**/* ./../react-flight-tracker/node_modules/@mymodules/react-lib-module"
+    "copy2:react-flight-tracker": "copyfiles -u 1 dist/**/* ./../react-flight-tracker/node_modules/@daniel.neuweiler/react-lib-module"
   },
   "dependencies": {},
   "peerDependencies": {
+    "@daniel.neuweiler/ts-lib-module": "^0.1.0-alpha.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },
   "devDependencies": {
+    "@daniel.neuweiler/ts-lib-module": "^0.1.0-alpha.2",
     "@svgr/rollup": "^5.2.0",
     "@types/jest": "^25.1.3",
     "@types/react": "^16.9.23",
