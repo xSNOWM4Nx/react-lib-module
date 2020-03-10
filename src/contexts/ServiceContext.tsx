@@ -3,14 +3,14 @@ import { ServiceProvider, IService } from '@daniel.neuweiler/ts-lib-module';
 
 // Definition for context props
 export interface ServiceContextProps {
-  injectService: <T extends IService>(serviceKey: string) => T | undefined;
+  getService: <T extends IService>(serviceKey: string) => T | undefined;
   startServices: () => Promise<boolean>;
   stopServices: () => Promise<boolean>;
 }
 
 // Create the context
 export const ServiceContext = React.createContext<ServiceContextProps>({
-  injectService: () => undefined,
+  getService: () => undefined,
   startServices: () => Promise.resolve(false),
   stopServices: () => Promise.resolve(false),
 });
@@ -20,6 +20,7 @@ const serviceProvider = new ServiceProvider('ServiceProvider');
 
 // Definiton for context provider props
 export interface ServiceContextProviderProps {
+  onInjectCustomServices?: () => Array<IService>;
 }
 
 interface ILocalProps {
@@ -35,6 +36,12 @@ const ServiceContextProvider: React.FC<Props> = (props) => {
   useEffect(() => {
 
     // Mount
+    if (props.onInjectCustomServices) {
+
+      var servicesToInject = props.onInjectCustomServices();
+      servicesToInject.forEach(service => serviceProviderRef.current.addService(service, service.key))
+    }
+
     serviceProviderRef.current.startServices();
 
     // Unmount
@@ -47,7 +54,7 @@ const ServiceContextProvider: React.FC<Props> = (props) => {
   return (
     <ServiceContext.Provider value={
       {
-        injectService: serviceProviderRef.current.getService,
+        getService: serviceProviderRef.current.getService,
         startServices: serviceProviderRef.current.startServices,
         stopServices: serviceProviderRef.current.stopServices,
       }} >
