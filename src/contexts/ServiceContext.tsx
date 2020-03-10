@@ -31,33 +31,40 @@ const ServiceContextProvider: React.FC<Props> = (props) => {
 
   // Refs
   const serviceProviderRef = useRef(serviceProvider);
+  const isMountedRef = useRef(false);
 
   // Effects
   useEffect(() => {
 
     // Mount
-    if (props.onInjectCustomServices) {
-
-      var servicesToInject = props.onInjectCustomServices();
-      servicesToInject.forEach(service => serviceProviderRef.current.addService(service, service.key))
-    }
-
     serviceProviderRef.current.startServices();
+    isMountedRef.current = true;
 
     // Unmount
     return () => {
 
       serviceProviderRef.current.stopServices();
+      isMountedRef.current = false;
     }
   }, []);
 
+  if (!isMountedRef.current) {
+
+    if (props.onInjectCustomServices) {
+
+      var servicesToInject = props.onInjectCustomServices();
+      servicesToInject.forEach(service => serviceProviderRef.current.addService(service, service.key))
+    }
+  }
+
   return (
-    <ServiceContext.Provider value={
-      {
-        getService: serviceProviderRef.current.getService,
-        startServices: serviceProviderRef.current.startServices,
-        stopServices: serviceProviderRef.current.stopServices,
-      }} >
+    <ServiceContext.Provider
+      value={
+        {
+          getService: serviceProviderRef.current.getService,
+          startServices: serviceProviderRef.current.startServices,
+          stopServices: serviceProviderRef.current.stopServices,
+        }} >
       {props.children}
     </ServiceContext.Provider>
   );
