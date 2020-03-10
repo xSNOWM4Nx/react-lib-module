@@ -22,7 +22,7 @@
     "deploy": "gh-pages -d example/build",
     "devbuild": "npm.cmd run build && npm.cmd run copy:packagedata && npm.cmd run copy2:react-sky-map",
     "copy:packagedata": "copyfiles package.json README.md dist",
-    "copy2:react-sky-map": "copyfiles -u 1 dist/**/* ./../react-sky-map/node_modules/@mymodules/react-lib-module"
+    "copy2:react-sky-map": "copyfiles -u 1 dist/**/* ./../react-flight-tracker/node_modules/@mymodules/react-lib-module"
   },
   "dependencies": {},
   "peerDependencies": {

@@ -8,10 +8,8 @@ This project represents my standard library for generic react components that I 
 
 ## Packages 📦:
 - [ts-lib-module](https://github.com/xSNOWM4Nx/ts-lib-module)
-- @material-ui/core
-- @material-ui/icons
-- recharts
-- typescript
+- [TypeScript](https://github.com/microsoft/TypeScript)
+- [material-ui](https://github.com/mui-org/material-ui)
 
 ## Features 🔮:
 - React: Using "Hooks", "Context" and other popular react patterns

@@ -3,18 +3,16 @@ import { ServiceProvider, IService } from '@mymodules/ts-lib-module';
 
 // Definition for context props
 export interface ServiceContextProps {
-  getService: <T extends IService>(serviceKey: string) => T | undefined;
+  injectService: <T extends IService>(serviceKey: string) => T | undefined;
   startServices: () => Promise<boolean>;
   stopServices: () => Promise<boolean>;
-  setAuthenticationToken: (token: string) => void;
 }
 
 // Create the context
 export const ServiceContext = React.createContext<ServiceContextProps>({
-  getService: () => undefined,
+  injectService: () => undefined,
   startServices: () => Promise.resolve(false),
   stopServices: () => Promise.resolve(false),
-  setAuthenticationToken: () => { },
 });
 
 // Create a service provider
@@ -49,10 +47,9 @@ const ServiceContextProvider: React.FC<Props> = (props) => {
   return (
     <ServiceContext.Provider value={
       {
-        getService: serviceProviderRef.current.getService,
+        injectService: serviceProviderRef.current.getService,
         startServices: serviceProviderRef.current.startServices,
         stopServices: serviceProviderRef.current.stopServices,
-        setAuthenticationToken: serviceProviderRef.current.setAuthenticationToken,
       }} >
       {props.children}
     </ServiceContext.Provider>
