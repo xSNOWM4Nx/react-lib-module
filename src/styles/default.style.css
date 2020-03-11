@@ -1,0 +1,35 @@
+/*#region indicators*/
+
+.indicator1-root {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.indicator1-root div {
+  position: absolute;
+  opacity: 1;
+  border-radius: 50%;
+  animation: indicator1-keyframes 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.indicator1-root div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes indicator1-keyframes {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
+}
+
+/*#endregion*/
