@@ -14,19 +14,23 @@ export const Indicator1: React.FC<Props> = (props) => {
 
   return (
     <div
-      className='indicator1-root'
-      style={{
-        transform: `transform: scale(${scale})`,
-      }}>
+      className='indicator-container'>
 
       <div
+        className='indicator1-root'
         style={{
-          border: `4px solid ${color}`
-        }} />
-      <div
-        style={{
-          border: `4px solid ${color}`
-        }} />
+          transform: `scale(${scale})`,
+        }}>
+
+        <div
+          style={{
+            border: `4px solid ${color}`
+          }} />
+        <div
+          style={{
+            border: `4px solid ${color}`
+          }} />
+      </div>
     </div>
   );
 }

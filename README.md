@@ -15,7 +15,7 @@ This project represents my standard library for generic react components that I 
 - [material-ui](https://github.com/mui-org/material-ui)
 
 ## 🔮 Features:
-- Using "Hooks", "Context" and other popular React patterns.
+- Using "Hooks", "Context", "Suspense" and other popular React patterns.
 - Written entirely in TypeScript.
 - Provides the application with various services and props.
 - Delivers a range of components and functions that are used again and again.
