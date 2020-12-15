@@ -29,7 +29,7 @@ type Props = ILocalProps;
 export const ScrollContainer: React.FC<Props> = (props) => {
 
   // External hooks
-  const classes = useStyles();
+  const classes = useStyles(props);
 
   return (
     <div className={`${classes.containerRoot} ${props.className}`}>

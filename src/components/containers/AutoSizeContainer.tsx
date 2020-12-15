@@ -14,13 +14,11 @@ const useStyles = makeStyles((theme: Theme) =>
 interface ILocalProps {
   className?: string;
   onSizeChanged?: (height: number, width: number) => void;
+  onRenderSizedChild?: (height: number, width: number) => React.ReactNode;
 }
 type Props = ILocalProps;
 
 export const AutoSizeContainer: React.FC<Props> = (props) => {
-
-  // Fields
-  var onRenderSizedChilds: (height: number, width: number) => React.ReactNode;
 
   // External hooks
   const classes = useStyles();
@@ -111,13 +109,7 @@ export const AutoSizeContainer: React.FC<Props> = (props) => {
     <div
       ref={containerRef}
       className={`${classes.containerRoot} ${props.className}`}>
-
-      {!isResizing &&
-        <React.Fragment>
-          {() => onRenderSizedChilds(height, width)}
-        </React.Fragment>
-      }
-
+      {!isResizing && props.onRenderSizedChild && props.onRenderSizedChild(height, width)}
     </div>
   );
 };

@@ -24,10 +24,12 @@ export const ViewInjector: React.FC<Props> = (props) => {
   }, [props.navigationElement.key]);
 
   return (
+
     <ErrorBoundary
       sourceName={props.navigationElement.importPath}
       onRenderFallback={(source, error, errorInfo) => {
         return (
+
           <ViewContainer
             isScrollLocked={true}>
 
@@ -40,6 +42,7 @@ export const ViewInjector: React.FC<Props> = (props) => {
       }}>
       <Suspense
         fallback={
+
           <ViewContainer
             isScrollLocked={true}>
 

@@ -27,7 +27,7 @@ type Props = ILocalProps;
 export const ViewContainer: React.FC<Props> = (props) => {
 
   // External hooks
-  const classes = useStyles();
+  const classes = useStyles(props);
 
   return (
     <div className={classes.containerRoot}>
