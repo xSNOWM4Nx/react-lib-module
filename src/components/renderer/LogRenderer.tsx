@@ -6,12 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import { ILog, LogLevelEnumeration, LocalizeMethod } from '@daniel.neuweiler/ts-lib-module';
 import { AutoSizeContainer } from './../containers';
-
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
-import WarningIcon from '@material-ui/icons/Warning';
-import BugReportIcon from '@material-ui/icons/BugReport';
-import PersonIcon from '@material-ui/icons/Person';
+import { getIconByLogLevel, getBackgroundColorByLogLevel, getForegroundColorByLogLevel } from './../../styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,32 +14,31 @@ const useStyles = makeStyles((theme: Theme) =>
       overflowX: 'hidden',
       overflowY: 'auto',
       scrollbarWidth: 'thin',
-      scrollbarColor: theme.palette.grey[400],
+      scrollbarColor: theme.palette.grey[600],
       '&::-webkit-scrollbar': {
         width: '0.4rem'
       },
       '&::-webkit-scrollbar-thumb': {
-        backgroundColor: theme.palette.grey[400]
+        backgroundColor: theme.palette.grey[600]
       }
     },
     listItemRoot: {
       padding: 0,
-      paddingBottom: 16
+      paddingBottom: theme.spacing(1),
+      paddingRight: theme.spacing(1)
     },
     cardRoot: {
+      backgroundColor: theme.palette.grey[500],
+      width: '100%',
       height: '100%',
-      borderRadius: 0,
-      display: 'flex',
-      flex: '1 1 0'
     },
     cardContentRoot: {
       overflow: 'hidden',
       height: '100%',
-      width: '100%',
+      display: 'flex',
+      flexDirection: 'row',
       padding: 0,
       margin: 0,
-      display: 'flex',
-      flexDirection: 'row'
     },
     iconContainer: {
       display: 'flex',
@@ -65,10 +59,10 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       justifyItems: 'center'
     },
-    headerText: {
-      ...theme.typography.body1,
+    primaryText: {
+      ...theme.typography.h6,
     },
-    logText: {
+    secondaryText: {
       ...theme.typography.body2,
     },
   }),
@@ -112,73 +106,19 @@ export const LogRenderer: React.FC<Props> = (props) => {
     return filteredLogs;
   };
 
-  const getIconByLogLevel = (log: ILog) => {
-
-    switch (log.level) {
-      case LogLevelEnumeration.UserAction:
-        return PersonIcon;
-      case LogLevelEnumeration.Info:
-        return InfoIcon;
-      case LogLevelEnumeration.Debug:
-        return BugReportIcon;
-      case LogLevelEnumeration.Warning:
-        return WarningIcon;
-      case LogLevelEnumeration.Error:
-        return ErrorIcon;
-      default:
-        return InfoIcon;
-    }
-  };
-
-  const getBackgroundColorByLogLevel = (log: ILog): string => {
-
-    switch (log.level) {
-      case LogLevelEnumeration.UserAction:
-        return theme.palette.success.main;
-      case LogLevelEnumeration.Info:
-        return theme.palette.info.main;
-      case LogLevelEnumeration.Debug:
-        return theme.palette.primary.main;;
-      case LogLevelEnumeration.Warning:
-        return theme.palette.warning.main;
-      case LogLevelEnumeration.Error:
-        return theme.palette.error.main;
-      default:
-        return theme.palette.info.main;
-    }
-  };
-
-  const getForegroundColorByLogLevel = (log: ILog): string => {
-
-    switch (log.level) {
-      case LogLevelEnumeration.UserAction:
-        return theme.palette.success.contrastText;
-      case LogLevelEnumeration.Info:
-        return theme.palette.info.contrastText;
-      case LogLevelEnumeration.Debug:
-        return theme.palette.primary.contrastText;;
-      case LogLevelEnumeration.Warning:
-        return theme.palette.warning.contrastText;
-      case LogLevelEnumeration.Error:
-        return theme.palette.error.contrastText;
-      default:
-        return theme.palette.info.contrastText;
-    }
-  };
-
   const renderRow = (renderProps: ListChildComponentProps) => {
 
     const { index, style } = renderProps;
     const log = filteredLogs[index];
 
     var LogIcon = getIconByLogLevel(log);
-    var backgroundColor = getBackgroundColorByLogLevel(log);
-    var foregroundColor = getForegroundColorByLogLevel(log);
+    var backgroundColor = getBackgroundColorByLogLevel(log, theme);
+    var foregroundColor = getForegroundColorByLogLevel(log, theme);
 
     var timeStampDate = new Date(log.timeStamp);
     var timeStampDateText = `${timeStampDate.toLocaleDateString(props.locale)} ${timeStampDate.getHours()}:${timeStampDate.getMinutes()}:${timeStampDate.getSeconds()}:${timeStampDate.getMilliseconds()}`;
 
-    var headMessage = `${log.prefix} | ${log.loggerKey} | ${LogLevelEnumeration[log.level]} | ${timeStampDateText}`
+    var infoMessage = `${log.prefix} | ${log.loggerKey} | ${LogLevelEnumeration[log.level]} | ${timeStampDateText}`
 
     return (
 
@@ -214,14 +154,14 @@ export const LogRenderer: React.FC<Props> = (props) => {
               <LogIcon className={classes.icon} />
             </div>
 
-            <div style={{ minWidth: theme.spacing(2) }} />
+            <div style={{ minWidth: theme.spacing(1) }} />
 
             <div className={classes.contentContainer}>
-              <div className={classes.headerText}>
-                {headMessage}
-              </div>
-              <div className={classes.logText}>
+              <div className={classes.primaryText}>
                 {log.message}
+              </div>
+              <div className={classes.secondaryText}>
+                {infoMessage}
               </div>
             </div>
 

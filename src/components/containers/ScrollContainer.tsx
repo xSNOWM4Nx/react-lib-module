@@ -9,12 +9,12 @@ const useStyles = makeStyles((theme: Theme) =>
       overflowX: 'hidden',
       overflowY: (props: Props) => props.isScrollLocked ? 'hidden' : 'auto',
       scrollbarWidth: 'thin',
-      scrollbarColor: theme.palette.grey[400],
+      scrollbarColor: theme.palette.grey[600],
       '&::-webkit-scrollbar': {
         width: '0.4rem'
       },
       '&::-webkit-scrollbar-thumb': {
-        backgroundColor: theme.palette.grey[400]
+        backgroundColor: theme.palette.grey[600]
       }
     }
   }),
