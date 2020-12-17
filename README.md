@@ -19,7 +19,7 @@ This project represents my standard library for generic react components that I 
 - Written entirely in TypeScript.
 - Provides the application with various services and props.
 - Delivers a range of components and functions that are used again and again.
-- Using styling components from the popular [material-ui](https://github.com/mui-org/material-ui) project.
+- Using styling components from [material-ui](https://github.com/mui-org/material-ui) project.
 
 ## ⌨️ Development:
 - Use the "devbuild_XXX" script to deploy the package to the corresponding cloned repositories. The package is then stored under "*/node_modules/@daniel.neuweiler/react-lib-module".

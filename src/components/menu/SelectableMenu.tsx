@@ -13,10 +13,16 @@ const useStyles = makeStyles((theme: Theme) =>
       //backgroundColor: 'inherit'
     },
     menuItemRoot: {
+      '&:hover': {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText
+      },
+      '&$selected': {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText
+      }
     },
-    menuItemSelected: {
-      backgroundColor: theme.palette.primary.main
-    },
+    menuItemSelected: {},
   }),
 );
 
@@ -27,7 +33,7 @@ interface ILocalProps {
   selectedIndex?: number;
   typoVariant?: "button" | "caption" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "inherit" | "subtitle1" | "subtitle2" | "body1" | "body2" | "overline" | "srOnly" | undefined;
   onLocalize: LocalizeMethod;
-  onSelect: (e: React.MouseEvent<HTMLElement>, element: ISelectableProps, index: number) => void;
+  onSelect: (e: React.MouseEvent<HTMLElement>, item: ISelectableProps, index: number) => void;
   onClose?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 type Props = ILocalProps;
@@ -85,7 +91,7 @@ export const SelectableMenu: React.FC<Props> = (props) => {
 
             <MenuItem
               classes={{
-                //root: 'selectablemenu-item-root',
+                root: classes.menuItemRoot,
                 selected: classes.menuItemSelected
               }}
               key={itemIndex}
