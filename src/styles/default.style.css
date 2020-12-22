@@ -1,3 +1,15 @@
+/*#region general*/
+
+ @keyframes genericRotating {
+  0% {  
+    transform: rotate(calc(0deg + calc(var(--offsetFactor) * var(--offsetDegree)))) translate(0px, 128px) rotate(calc(0deg - calc(var(--offsetFactor) * var(--offsetDegree))));
+  }
+  100% {
+    transform: rotate(calc(360deg + calc(var(--offsetFactor) * var(--offsetDegree)))) translate(0px, 128px) rotate(calc(-360deg - calc(var(--offsetFactor) * var(--offsetDegree))));
+  }
+}
+
+/*#endregion*/
 /*#region indicators*/
 
 .indicator-container {

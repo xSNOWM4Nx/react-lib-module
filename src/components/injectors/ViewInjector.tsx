@@ -3,7 +3,7 @@ import { useTheme } from '@material-ui/core/styles';
 
 import { NavigationElementProps, ViewProps } from './../../props';
 import { ErrorBoundary } from './../ErrorBoundary';
-import { ErrorContent } from './../ErrorContent';
+import { ErrorContent } from '../contents/ErrorContent';
 import { ViewContainer } from './../containers/ViewContainer';
 import { Indicator1 } from './../indicators';
 
