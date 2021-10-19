@@ -1,5 +1,5 @@
 import React, { useMemo, Suspense } from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 
 import { NavigationElementProps, ViewProps } from './../../props';
 import { ErrorBoundary } from './../ErrorBoundary';

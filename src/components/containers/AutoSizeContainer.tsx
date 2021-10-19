@@ -1,15 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    containerRoot: {
-      height: '100%',
-      width: '100%',
-      overflow: 'hidden'
-    }
-  }),
-);
+import { Box } from '@mui/material';
 
 interface ILocalProps {
   className?: string;
@@ -19,9 +9,6 @@ interface ILocalProps {
 type Props = ILocalProps;
 
 export const AutoSizeContainer: React.FC<Props> = (props) => {
-
-  // External hooks
-  const classes = useStyles();
 
   // States
   const [isResizing, setResizing] = useState<boolean>(false);
@@ -106,10 +93,15 @@ export const AutoSizeContainer: React.FC<Props> = (props) => {
   };
 
   return (
-    <div
+    <Box
       ref={containerRef}
-      className={`${classes.containerRoot} ${props.className}`}>
+      sx={{
+        height: '100%',
+        width: '100%',
+        overflow: 'hidden'
+      }}
+      className={props.className}>
       {!isResizing && props.onRenderSizedChild && props.onRenderSizedChild(height, width)}
-    </div>
+    </Box>
   );
 };

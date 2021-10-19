@@ -1,72 +1,12 @@
+/* eslint-disable react/react-in-jsx-scope -- Unaware of jsxImportSource */
+/** @jsxImportSource @emotion/react */
 import React from 'react';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import ListItem from '@material-ui/core/ListItem';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import { Box, Typography, ListItem, Card, CardContent } from '@mui/material';
 import { ILog, LogLevelEnumeration, LocalizeMethod } from '@daniel.neuweiler/ts-lib-module';
+import { useTheme } from '@mui/material/styles';
 import { AutoSizeContainer } from './../containers';
 import { getIconByLogLevel, getBackgroundColorByLogLevel, getForegroundColorByLogLevel } from './../../styles';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    fixedSizeListRoot: {
-      overflowX: 'hidden',
-      overflowY: 'auto',
-      scrollbarWidth: 'thin',
-      scrollbarColor: theme.palette.grey[600],
-      '&::-webkit-scrollbar': {
-        width: '0.4rem'
-      },
-      '&::-webkit-scrollbar-thumb': {
-        backgroundColor: theme.palette.grey[600]
-      }
-    },
-    listItemRoot: {
-      padding: 0,
-      paddingBottom: theme.spacing(1),
-      paddingRight: theme.spacing(1)
-    },
-    cardRoot: {
-      backgroundColor: theme.palette.grey[500],
-      width: '100%',
-      height: '100%',
-    },
-    cardContentRoot: {
-      overflow: 'hidden',
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'row',
-      padding: 0,
-      margin: 0,
-    },
-    iconContainer: {
-      display: 'flex',
-      flexDirection: 'row',
-      alignContent: 'center',
-      alignItems: 'center',
-      justifyContent: 'center',
-      justifyItems: 'center'
-    },
-    icon: {
-      minWidth: 32,
-      minHeight: 32
-    },
-    contentContainer: {
-      flex: 'auto',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      justifyItems: 'center'
-    },
-    primaryText: {
-      ...theme.typography.h6,
-    },
-    secondaryText: {
-      ...theme.typography.body2,
-    },
-  }),
-);
 
 interface ILocalProps {
   logs?: Array<ILog>;
@@ -80,7 +20,6 @@ type Props = ILocalProps;
 export const LogRenderer: React.FC<Props> = (props) => {
 
   // External hooks
-  const classes = useStyles();
   const theme = useTheme();
 
   const getFilteredLogs = () => {
@@ -125,45 +64,75 @@ export const LogRenderer: React.FC<Props> = (props) => {
       <ListItem
         key={index}
         button={false}
-        style={{
+        style={{ ...style }}
+        sx={{
+          height: 80,
           maxHeight: 80,
-          ...style,
-        }}
-        classes={{
-          root: classes.listItemRoot
+          padding: 0,
+          paddingBottom: theme.spacing(1),
+          paddingRight: theme.spacing(1)
         }}>
 
         <Card
-          classes={{
-            root: classes.cardRoot
+          sx={{
+            backgroundColor: theme.palette.grey[700],
+            width: '100%',
+            height: '100%'
           }}>
 
           <CardContent
-            classes={{
-              root: classes.cardContentRoot
+            sx={{
+              overflow: 'hidden',
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'row',
+              padding: 0,
+              margin: 0
             }}>
 
-            <div
-              className={classes.iconContainer}
-              style={{
+            <Box
+              sx={{
+                height: '100%',
+                width: 40,
+                maxWidth: 40,
+                display: 'flex',
+                flexDirection: 'row',
+                alignContent: 'center',
+                alignItems: 'center',
+                justifyContent: 'center',
+                justifyItems: 'center',
                 backgroundColor: backgroundColor,
                 color: foregroundColor,
                 fill: foregroundColor
               }}>
 
-              <LogIcon className={classes.icon} />
-            </div>
+              <LogIcon
+                sx={{
+                  minWidth: 32,
+                  minHeight: 32
+                }} />
+            </Box>
 
-            <div style={{ minWidth: theme.spacing(1) }} />
+            <Box sx={{ minWidth: theme.spacing(1) }} />
 
-            <div className={classes.contentContainer}>
-              <div className={classes.primaryText}>
+            <Box
+              sx={{
+                flex: 'auto',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                justifyItems: 'center'
+              }}>
+              <Typography
+                variant='h6'>
                 {log.message}
-              </div>
-              <div className={classes.secondaryText}>
+              </Typography>
+              <Typography
+                variant='body2'>
                 {infoMessage}
-              </div>
-            </div>
+              </Typography>
+            </Box>
 
           </CardContent>
         </Card>
@@ -181,7 +150,18 @@ export const LogRenderer: React.FC<Props> = (props) => {
         return (
 
           <FixedSizeList
-            className={classes.fixedSizeListRoot}
+            css={(theme) => ({
+              overflowX: 'hidden',
+              overflowY: 'auto',
+              scrollbarWidth: 'thin',
+              scrollbarColor: theme.palette.grey[600],
+              '&::-webkit-scrollbar': {
+                width: '0.4rem'
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: theme.palette.grey[600]
+              }
+            })}
             height={height}
             itemCount={filteredLogs.length}
             itemSize={80}
@@ -190,7 +170,6 @@ export const LogRenderer: React.FC<Props> = (props) => {
           </FixedSizeList>
         )
       }} >
-
 
     </AutoSizeContainer>
   );

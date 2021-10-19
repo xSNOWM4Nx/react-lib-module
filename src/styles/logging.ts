@@ -1,11 +1,11 @@
 import { ILog, LogLevelEnumeration } from '@daniel.neuweiler/ts-lib-module';
-import { Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
 
-import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
-import WarningIcon from '@material-ui/icons/Warning';
-import BugReportIcon from '@material-ui/icons/BugReport';
-import PersonIcon from '@material-ui/icons/Person';
+import ErrorIcon from '@mui/icons-material/Error';
+import InfoIcon from '@mui/icons-material/Info';
+import WarningIcon from '@mui/icons-material/Warning';
+import BugReportIcon from '@mui/icons-material/BugReport';
+import PersonIcon from '@mui/icons-material/Person';
 
 export const getIconByLogLevel = (log: ILog) => {
 
@@ -51,7 +51,7 @@ export const getForegroundColorByLogLevel = (log: ILog, theme: Theme): string =>
     case LogLevelEnumeration.Info:
       return theme.palette.info.contrastText;
     case LogLevelEnumeration.Debug:
-      return theme.palette.primary.contrastText;;
+      return theme.palette.primary.contrastText;
     case LogLevelEnumeration.Warning:
       return theme.palette.warning.contrastText;
     case LogLevelEnumeration.Error:

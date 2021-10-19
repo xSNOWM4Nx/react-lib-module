@@ -1,22 +1,6 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { Box } from '@mui/material';
 import { ScrollContainer } from './ScrollContainer';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    containerRoot: {
-      height: '100%',
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      backgroundColor: (props: Props) => props.backgroundColor ? props.backgroundColor : 'inherit'
-    },
-    containerContent: {
-      flex: 'auto',
-      overflowY: 'hidden'
-    },
-  }),
-);
 
 interface ILocalProps {
   isScrollLocked?: boolean;
@@ -26,19 +10,28 @@ type Props = ILocalProps;
 
 export const ViewContainer: React.FC<Props> = (props) => {
 
-  // External hooks
-  const classes = useStyles(props);
-
   return (
-    <div className={classes.containerRoot}>
+    <Box
+      sx={{
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: props.backgroundColor ? props.backgroundColor : 'inherit'
+      }}>
 
-      <div className={classes.containerContent}>
+      <Box
+        sx={{
+          flex: 'auto',
+          overflowY: 'hidden'
+        }}>
+
         <ScrollContainer
           isScrollLocked={props.isScrollLocked}>
           {props.children}
         </ScrollContainer>
-      </div>
+      </Box>
 
-    </div>
+    </Box>
   );
 };

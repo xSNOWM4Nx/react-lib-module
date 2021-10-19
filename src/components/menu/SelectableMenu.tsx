@@ -1,37 +1,15 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { LocalizeMethod } from '@daniel.neuweiler/ts-lib-module';
 import { ISelectableProps } from './../../props';
 
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    menuPpaper: {
-      //backgroundColor: 'inherit'
-    },
-    menuItemRoot: {
-      '&:hover': {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText
-      },
-      '&$selected': {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText
-      }
-    },
-    menuItemSelected: {},
-  }),
-);
+import { Box, Menu, MenuItem, Typography } from '@mui/material';
 
 interface ILocalProps {
   className?: string;
   anchor: HTMLElement | null;
   items?: Array<ISelectableProps>;
   selectedIndex?: number;
-  typoVariant?: "button" | "caption" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "inherit" | "subtitle1" | "subtitle2" | "body1" | "body2" | "overline" | "srOnly" | undefined;
+  typoVariant?: "button" | "caption" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "inherit" | "subtitle1" | "subtitle2" | "body1" | "body2" | "overline" | undefined;
   onLocalize: LocalizeMethod;
   onSelect: (e: React.MouseEvent<HTMLElement>, item: ISelectableProps, index: number) => void;
   onClose?: (e: React.MouseEvent<HTMLElement>) => void;
@@ -40,24 +18,23 @@ type Props = ILocalProps;
 
 export const SelectableMenu: React.FC<Props> = (props) => {
 
-  // External hooks
-  const classes = useStyles(props);
-
   const renderItemIcon = (IconElement?: React.FunctionComponent<any> | React.ComponentType<any> | string) => {
 
     if (!IconElement)
       return (
-        <div style={{ width: 36 }} />
+        <Box sx={{ width: 36 }} />
       )
 
     if (typeof IconElement === 'string')
       return (
-        <span style={{
-          width: 36,
-          fontSize: 24
-        }}>
+        <Box
+          component='span'
+          sx={{
+            width: 36,
+            fontSize: 24
+          }}>
           {IconElement}
-        </span>
+        </Box>
       );
 
     return (
@@ -71,12 +48,8 @@ export const SelectableMenu: React.FC<Props> = (props) => {
   return (
 
     <Menu
-      className={`${props.className}`}
-      classes={{
-        paper: classes.menuPpaper
-      }}
+      className={props.className}
       anchorEl={props.anchor}
-      getContentAnchorEl={null}
       open={Boolean(props.anchor)}
       onClose={props.onClose}>
 
@@ -90,9 +63,15 @@ export const SelectableMenu: React.FC<Props> = (props) => {
           return (
 
             <MenuItem
-              classes={{
-                root: classes.menuItemRoot,
-                selected: classes.menuItemSelected
+              sx={{
+                '& .MuiMenuItem-root': {
+                  backgroundColor: (theme) => theme.palette.primary.main,
+                  color: (theme) => theme.palette.primary.contrastText
+                },
+                '& .Mui-selected': {
+                  backgroundColor: (theme) => theme.palette.primary.main,
+                  color: (theme) => theme.palette.primary.contrastText
+                },
               }}
               key={itemIndex}
               selected={isSelectedItem}
@@ -100,7 +79,8 @@ export const SelectableMenu: React.FC<Props> = (props) => {
 
               {renderItemIcon(item.icon)}
 
-              <div className='v2' />
+              <Box
+                sx={{ width: (theme) => theme.spacing(2) }} />
 
               <Typography
                 variant={(props.typoVariant !== undefined) ? props.typoVariant : 'h5'}>
