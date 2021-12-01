@@ -1,5 +1,6 @@
 import { ILog, LogLevelEnumeration } from '@daniel.neuweiler/ts-lib-module';
-import { Theme } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
+import { Theme } from '@mui/material';
 
 import ErrorIcon from '@mui/icons-material/Error';
 import InfoIcon from '@mui/icons-material/Info';
@@ -7,7 +8,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 import BugReportIcon from '@mui/icons-material/BugReport';
 import PersonIcon from '@mui/icons-material/Person';
 
-export const getIconByLogLevel = (log: ILog) => {
+export const getLogIcon = (log: ILog) => {
 
   switch (log.level) {
     case LogLevelEnumeration.UserAction:
@@ -25,38 +26,44 @@ export const getIconByLogLevel = (log: ILog) => {
   }
 };
 
-export const getBackgroundColorByLogLevel = (log: ILog, theme: Theme): string => {
+export const getLogStyle = (log: ILog, theme: Theme): SxProps<Theme> => {
 
   switch (log.level) {
     case LogLevelEnumeration.UserAction:
-      return theme.palette.success.main;
+      return {
+        backgroundColor: (theme) => theme.palette.success.main,
+        color: (theme) => theme.palette.success.contrastText,
+        fill: (theme: Theme) => theme.palette.success.contrastText
+      };
     case LogLevelEnumeration.Info:
-      return theme.palette.info.main;
+      return {
+        backgroundColor: (theme) => theme.palette.info.main,
+        color: (theme) => theme.palette.info.contrastText,
+        fill: (theme: Theme) => theme.palette.info.contrastText
+      };
     case LogLevelEnumeration.Debug:
-      return theme.palette.primary.main;;
+      return {
+        backgroundColor: (theme) => theme.palette.primary.main,
+        color: (theme) => theme.palette.primary.contrastText,
+        fill: (theme: Theme) => theme.palette.primary.contrastText
+      };
     case LogLevelEnumeration.Warning:
-      return theme.palette.warning.main;
+      return {
+        backgroundColor: (theme) => theme.palette.warning.main,
+        color: (theme) => theme.palette.warning.contrastText,
+        fill: (theme: Theme) => theme.palette.warning.contrastText
+      };
     case LogLevelEnumeration.Error:
-      return theme.palette.error.main;
+      return {
+        backgroundColor: (theme) => theme.palette.error.main,
+        color: (theme) => theme.palette.error.contrastText,
+        fill: (theme: Theme) => theme.palette.error.contrastText
+      };
     default:
-      return theme.palette.info.main;
-  }
-};
-
-export const getForegroundColorByLogLevel = (log: ILog, theme: Theme): string => {
-
-  switch (log.level) {
-    case LogLevelEnumeration.UserAction:
-      return theme.palette.success.contrastText;
-    case LogLevelEnumeration.Info:
-      return theme.palette.info.contrastText;
-    case LogLevelEnumeration.Debug:
-      return theme.palette.primary.contrastText;
-    case LogLevelEnumeration.Warning:
-      return theme.palette.warning.contrastText;
-    case LogLevelEnumeration.Error:
-      return theme.palette.error.contrastText;
-    default:
-      return theme.palette.info.contrastText;
+      return {
+        backgroundColor: (theme) => theme.palette.info.main,
+        color: (theme) => theme.palette.info.contrastText,
+        fill: (theme: Theme) => theme.palette.info.contrastText
+      };
   }
 };

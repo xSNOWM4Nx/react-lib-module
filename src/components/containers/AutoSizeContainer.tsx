@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Box } from '@mui/material';
+import { SxProps } from '@mui/system';
+import { Box, Theme } from '@mui/material';
 
 interface ILocalProps {
-  className?: string;
+  contentStyle?: SxProps<Theme>;
   onSizeChanged?: (height: number, width: number) => void;
   onRenderSizedChild?: (height: number, width: number) => React.ReactNode;
 }
@@ -98,9 +99,9 @@ export const AutoSizeContainer: React.FC<Props> = (props) => {
       sx={{
         height: '100%',
         width: '100%',
-        overflow: 'hidden'
-      }}
-      className={props.className}>
+        overflow: 'hidden',
+        ...props.contentStyle
+      }}>
       {!isResizing && props.onRenderSizedChild && props.onRenderSizedChild(height, width)}
     </Box>
   );

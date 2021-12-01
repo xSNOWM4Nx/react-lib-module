@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Box, Typography, IconButton } from '@mui/material';
 
 export interface IAboutData {
@@ -24,29 +23,9 @@ export const AboutContent: React.FC<Props> = (props) => {
     return 256;
   };
 
-  // Get element offset
-  const elementOffset = 360 / props.elements.length;
+  const renderCircleElements = () => {
 
-  return (
-    <Box
-      sx={{
-        height: '100%',
-        width: '100%',
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        alignContent: "center",
-        justifyItems: "center",
-        justifyContent: "center"
-      }}>
-
-      <Box
-        sx={{
-          width: '100%',
-          flex: 'auto'
-        }}>
-
-      </Box>
+    return (
 
       <Box
         sx={{
@@ -92,6 +71,34 @@ export const AboutContent: React.FC<Props> = (props) => {
           )
         })}
       </Box>
+    );
+  };
+
+  // Get element offset
+  const elementOffset = 360 / props.elements.length;
+
+  return (
+    <Box
+      sx={{
+        height: '100%',
+        width: '100%',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        alignContent: "center",
+        justifyItems: "center",
+        justifyContent: "center"
+      }}>
+
+      <Box
+        sx={{
+          width: '100%',
+          flex: 'auto'
+        }}>
+
+      </Box>
+
+      {renderCircleElements()}
 
       <Box
         sx={{

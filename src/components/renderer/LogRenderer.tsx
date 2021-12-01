@@ -6,7 +6,7 @@ import { Box, Typography, ListItem, Card, CardContent } from '@mui/material';
 import { ILog, LogLevelEnumeration, LocalizeMethod } from '@daniel.neuweiler/ts-lib-module';
 import { useTheme } from '@mui/material/styles';
 import { AutoSizeContainer } from './../containers';
-import { getIconByLogLevel, getBackgroundColorByLogLevel, getForegroundColorByLogLevel } from './../../styles';
+import { getLogIcon, getLogStyle } from './../../styles';
 
 interface ILocalProps {
   logs?: Array<ILog>;
@@ -50,9 +50,8 @@ export const LogRenderer: React.FC<Props> = (props) => {
     const { index, style } = renderProps;
     const log = filteredLogs[index];
 
-    var LogIcon = getIconByLogLevel(log);
-    var backgroundColor = getBackgroundColorByLogLevel(log, theme);
-    var foregroundColor = getForegroundColorByLogLevel(log, theme);
+    var LogIcon = getLogIcon(log);
+    var logStyle = getLogStyle(log, theme);
 
     var timeStampDate = new Date(log.timeStamp);
     var timeStampDateText = `${timeStampDate.toLocaleDateString(props.locale)} ${timeStampDate.getHours()}:${timeStampDate.getMinutes()}:${timeStampDate.getSeconds()}:${timeStampDate.getMilliseconds()}`;
@@ -102,9 +101,7 @@ export const LogRenderer: React.FC<Props> = (props) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 justifyItems: 'center',
-                backgroundColor: backgroundColor,
-                color: foregroundColor,
-                fill: foregroundColor
+                ...logStyle
               }}>
 
               <LogIcon

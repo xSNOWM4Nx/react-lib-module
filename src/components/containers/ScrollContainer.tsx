@@ -1,8 +1,9 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { SxProps } from '@mui/system';
+import { Box, Theme } from '@mui/material';
 
 interface ILocalProps {
-  className?: string;
+  contentStyle?: SxProps<Theme>;
   isScrollLocked?: boolean;
 }
 type Props = ILocalProps;
@@ -23,9 +24,9 @@ export const ScrollContainer: React.FC<Props> = (props) => {
         },
         '&::-webkit-scrollbar-thumb': {
           backgroundColor: (theme) => theme.palette.grey[600]
-        }
-      }}
-      className={props.className}>
+        },
+        ...props.contentStyle
+      }}>
       {props.children}
     </Box>
   );
