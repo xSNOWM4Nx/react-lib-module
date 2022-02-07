@@ -1,6 +1,6 @@
 {
   "name": "@daniel.neuweiler/react-lib-module",
-  "version": "0.1.0-alpha.13",
+  "version": "0.1.0-alpha.14",
   "description": "This project represents my standard library for generic react components that I use in various other projects.",
   "author": "Daniel Neuweiler",
   "license": "MIT",
@@ -31,22 +31,22 @@
     "copy2:react-flight-tracker": "copyfiles build/**/* ./../react-flight-tracker/node_modules/@daniel.neuweiler/react-lib-module"
   },
   "dependencies": {
-    "@daniel.neuweiler/ts-lib-module": "^0.1.0-alpha.16",
-    "@emotion/react": "^11.7.0",
+    "@daniel.neuweiler/ts-lib-module": "^0.1.0-alpha.17",
+    "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@mui/material": "^5.2.2",
-    "@mui/icons-material": "^5.2.0",
-    "@svgr/rollup": "^6.0.0",
-    "prop-types": "^15.7.2",
+    "@mui/material": "^5.4.0",
+    "@mui/icons-material": "^5.3.1",
+    "@svgr/rollup": "^6.2.1",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-window": "^1.8.6",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^5.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.2",
-    "@types/react": "^17.0.24",
-    "@types/react-dom": "^17.0.9",
+    "@types/jest": "^27.4.0",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
     "@types/react-window": "^1.8.5"
   }
 }
