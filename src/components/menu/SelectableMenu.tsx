@@ -2,7 +2,7 @@ import React from 'react';
 import { LocalizeMethod } from '@daniel.neuweiler/ts-lib-module';
 import { ISelectableProps } from './../../props';
 
-import { Box, Menu, MenuItem, Typography } from '@mui/material';
+import { Box, Menu, MenuItem, Typography, Theme } from '@mui/material';
 
 interface ILocalProps {
   className?: string;
@@ -64,11 +64,14 @@ export const SelectableMenu: React.FC<Props> = (props) => {
 
             <MenuItem
               sx={{
-                '& .MuiMenuItem-root': {
-                  backgroundColor: (theme) => theme.palette.primary.main,
-                  color: (theme) => theme.palette.primary.contrastText
+                '&.MuiMenuItem-root': {
+                  ':hover': {
+                    backgroundColor: (theme) => theme.palette.primary.main,
+                    color: (theme) => theme.palette.primary.contrastText,
+                    fill: (theme: Theme) => theme.palette.primary.contrastText,
+                  }
                 },
-                '& .Mui-selected': {
+                '&.Mui-selected': {
                   backgroundColor: (theme) => theme.palette.primary.main,
                   color: (theme) => theme.palette.primary.contrastText
                 },

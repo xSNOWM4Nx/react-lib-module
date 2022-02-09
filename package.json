@@ -1,6 +1,6 @@
 {
   "name": "@daniel.neuweiler/react-lib-module",
-  "version": "0.1.0-alpha.14",
+  "version": "0.1.0-alpha.15",
   "description": "This project represents my standard library for generic react components that I use in various other projects.",
   "author": "Daniel Neuweiler",
   "license": "MIT",
@@ -25,10 +25,9 @@
     "build": "tsc && npm.cmd run copy:styles",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "devbuild_react-flight-tracker": "npm.cmd run build && npm.cmd run copy:packagedata && npm.cmd run copy2:react-flight-tracker",
-    "copy:packagedata": "copyfiles package.json README.md build",
+    "devbuild_react-flight-tracker": "npm.cmd run build && npm.cmd run copy2:react-flight-tracker",
     "copy:styles": "copyfiles -u 1 src/styles/* build",
-    "copy2:react-flight-tracker": "copyfiles build/**/* ./../react-flight-tracker/node_modules/@daniel.neuweiler/react-lib-module"
+    "copy2:react-flight-tracker": "copyfiles build/**/* ./../react-flight-tracker/node_modules/@daniel.neuweiler/react-lib-module copyfiles package.json README.md ./../react-flight-tracker/node_modules/@daniel.neuweiler/react-lib-module"
   },
   "dependencies": {
     "@daniel.neuweiler/ts-lib-module": "^0.1.0-alpha.17",

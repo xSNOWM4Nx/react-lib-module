@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, IconButton } from '@mui/material';
+import { Box, Typography, IconButton, Theme } from '@mui/material';
 
 export interface IAboutData {
   ariaLabel: string;
@@ -31,8 +31,8 @@ export const AboutContent: React.FC<Props> = (props) => {
         sx={{
           height: getBoxSize(),
           width: getBoxSize(),
-          color: '#fff',
-          fill: '#fff',
+          color: (theme) => theme.palette.text.primary,
+          fill: (theme: Theme) => theme.palette.text.primary,
           ['--offsetDegree' as any]: `${elementOffset}deg`
         }}>
 
@@ -63,8 +63,8 @@ export const AboutContent: React.FC<Props> = (props) => {
                     minHeight: 64,
                     width: 64,
                     minWidth: 64,
-                    color: '#fff',
-                    fill: '#fff'
+                    color: (theme: Theme) => theme.palette.text.primary,
+                    fill: (theme: Theme) => theme.palette.text.primary
                   }} />
               </IconButton>
             </Box>

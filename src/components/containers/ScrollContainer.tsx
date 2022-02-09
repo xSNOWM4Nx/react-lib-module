@@ -18,12 +18,12 @@ export const ScrollContainer: React.FC<Props> = (props) => {
         overflowX: 'hidden',
         overflowY: props.isScrollLocked ? 'hidden' : 'auto',
         scrollbarWidth: 'thin',
-        scrollbarColor: (theme) => theme.palette.grey[600],
+        scrollbarColor: (theme) => theme.palette.secondary.main,
         '&::-webkit-scrollbar': {
           width: '0.4rem'
         },
         '&::-webkit-scrollbar-thumb': {
-          backgroundColor: (theme) => theme.palette.grey[600]
+          backgroundColor: (theme) => theme.palette.secondary.main
         },
         ...props.contentStyle
       }}>
