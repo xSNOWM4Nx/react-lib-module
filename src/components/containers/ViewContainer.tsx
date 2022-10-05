@@ -3,9 +3,10 @@ import { Box } from '@mui/material';
 import { ScrollContainer } from './ScrollContainer';
 
 interface ILocalProps {
+  children?: React.ReactNode;
   isScrollLocked?: boolean;
   backgroundColor?: string;
-}
+};
 type Props = ILocalProps;
 
 export const ViewContainer: React.FC<Props> = (props) => {

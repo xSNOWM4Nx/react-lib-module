@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { LogProvider } from '@daniel.neuweiler/ts-lib-module';
 
 interface ILocalProps {
+  children?: React.ReactNode;
   sourceName: string;
   onRenderFallback: (source: string, error: any, errorInfo: any) => React.ReactNode;
-}
+};
 type Props = ILocalProps;
 
 interface ILocalState {

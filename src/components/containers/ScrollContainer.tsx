@@ -3,9 +3,10 @@ import { SxProps } from '@mui/system';
 import { Box, Theme } from '@mui/material';
 
 interface ILocalProps {
+  children?: React.ReactNode;
   contentStyle?: SxProps<Theme>;
   isScrollLocked?: boolean;
-}
+};
 type Props = ILocalProps;
 
 export const ScrollContainer: React.FC<Props> = (props) => {

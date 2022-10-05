@@ -8,9 +8,10 @@ import { ViewContainer } from './../containers/ViewContainer';
 import { Indicator1 } from './../indicators';
 
 interface ILocalProps {
+  children?: React.ReactNode;
   navigationElement: NavigationElementProps;
   onImportView: (navigationElement: NavigationElementProps) => React.LazyExoticComponent<React.ComponentType<ViewProps>>;
-}
+};
 type Props = ILocalProps;
 
 export const ViewInjector: React.FC<Props> = (props) => {

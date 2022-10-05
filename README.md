@@ -21,8 +21,8 @@ This project represents my standard library for generic react components that I 
 - Delivers a range of components and functions that are used again and again.
 - Using styling components from [MUI](https://github.com/mui-org) project.
 
-## ⌨️ Development:
-- Use the "devbuild_XXX" script to deploy the package to the corresponding cloned repositories. The package is then stored under "*/node_modules/@daniel.neuweiler/react-lib-module".
+<!-- ## ⌨️ Development:
+- Use the "devbuild_XXX" script to deploy the package to the corresponding cloned repositories. The package is then stored under "*/node_modules/@daniel.neuweiler/react-lib-module". -->
 
 ## 📑 License:
 - MIT © [xSNOWM4Nx](https://github.com/xSNOWM4Nx)

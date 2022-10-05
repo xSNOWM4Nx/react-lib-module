@@ -3,10 +3,12 @@ import { SxProps } from '@mui/system';
 import { Box, Theme } from '@mui/material';
 
 interface ILocalProps {
+  children?: React.ReactNode;
   contentStyle?: SxProps<Theme>;
+  renderMode?: 'HoldBack' | 'Direct';
   onSizeChanged?: (height: number, width: number) => void;
   onRenderSizedChild?: (height: number, width: number) => React.ReactNode;
-}
+};
 type Props = ILocalProps;
 
 export const AutoSizeContainer: React.FC<Props> = (props) => {
@@ -48,13 +50,16 @@ export const AutoSizeContainer: React.FC<Props> = (props) => {
 
   const handleWindowResize = (e: UIEvent) => {
 
-    if (!isResizing)
+    if ((renderMode === 'HoldBack') && !isResizing)
       setResizing(true)
 
     checkContainerSize();
 
-    window.clearTimeout(resizeTimeoutHandleRef.current);
-    resizeTimeoutHandleRef.current = window.setTimeout(checkResizing, 300);
+    if (renderMode === 'HoldBack') {
+
+      window.clearTimeout(resizeTimeoutHandleRef.current);
+      resizeTimeoutHandleRef.current = window.setTimeout(checkResizing, 300);
+    }
   };
 
   const checkResizing = () => {
@@ -93,6 +98,21 @@ export const AutoSizeContainer: React.FC<Props> = (props) => {
     }
   };
 
+  // Helpers
+  const renderMode = (props.renderMode !== undefined) ? props.renderMode : 'HoldBack';
+  var canRenderChilds = true;
+  switch (renderMode) {
+    case 'Direct':
+      canRenderChilds = true;
+      break;
+    case 'HoldBack':
+      canRenderChilds = !isResizing;
+      break;
+    default:
+      canRenderChilds = !isResizing;
+      break;
+  }
+
   return (
     <Box
       ref={containerRef}
@@ -102,7 +122,8 @@ export const AutoSizeContainer: React.FC<Props> = (props) => {
         overflow: 'hidden',
         ...props.contentStyle
       }}>
-      {!isResizing && props.onRenderSizedChild && props.onRenderSizedChild(height, width)}
+      {canRenderChilds && props.onRenderSizedChild && props.onRenderSizedChild!(height, width)}
+      {canRenderChilds && !props.onRenderSizedChild && props.children}
     </Box>
   );
 };

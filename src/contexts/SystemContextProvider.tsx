@@ -24,6 +24,7 @@ const serviceProvider = new ServiceProvider('ServiceProvider');
 
 // Definiton for provider props
 export interface SystemContextProviderProps {
+  children?: React.ReactNode;
   onInjectCustomServices?: () => Array<IService>;
 }
 
