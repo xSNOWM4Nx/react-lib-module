@@ -1,6 +1,6 @@
 {
   "name": "@daniel.neuweiler/react-lib-module",
-  "version": "0.1.0-alpha.16",
+  "version": "1.0.0",
   "description": "This project represents my standard library for generic react components that I use in various other projects.",
   "author": "Daniel Neuweiler",
   "license": "MIT",
@@ -25,7 +25,10 @@
     "build": "tsc && npm.cmd run copy:styles",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "copy:styles": "copyfiles -u 1 src/styles/* build"
+    "copy:styles": "copyfiles -u 1 src/styles/* build",
+    "script:build": "powershell scripts/build-project.ps1",
+    "script:injectdevbuild": "powershell scripts/inject-devbuild.ps1",
+    "script:clear": "powershell Remove-Item 'node_modules' -Recurse -ErrorAction SilentlyContinue"
   },
   "dependencies": {
     "@daniel.neuweiler/ts-lib-module": "^0.1.0-alpha.18",
