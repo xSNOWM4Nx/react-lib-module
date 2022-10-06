@@ -1,14 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { SxProps } from '@mui/system';
 import { Box, Theme } from '@mui/material';
 
 interface ILocalProps {
   children?: React.ReactNode;
-  contentStyle?: SxProps<Theme>;
-  renderMode?: 'HoldBack' | 'Direct';
+  containerStyle?: SxProps<Theme>;
+  isScrollLocked?: boolean;
+  showContentOnResize?: boolean;
   onSizeChanged?: (height: number, width: number) => void;
   onRenderSizedChild?: (height: number, width: number) => React.ReactNode;
-};
+}
 type Props = ILocalProps;
 
 export const AutoSizeContainer: React.FC<Props> = (props) => {
@@ -43,24 +44,10 @@ export const AutoSizeContainer: React.FC<Props> = (props) => {
       window.removeEventListener('resize', handleWindowResize);
     }
   }, []);
-  useEffect(() => {
+  useLayoutEffect(() => {
 
     checkContainerSize();
   });
-
-  const handleWindowResize = (e: UIEvent) => {
-
-    if ((renderMode === 'HoldBack') && !isResizing)
-      setResizing(true)
-
-    checkContainerSize();
-
-    if (renderMode === 'HoldBack') {
-
-      window.clearTimeout(resizeTimeoutHandleRef.current);
-      resizeTimeoutHandleRef.current = window.setTimeout(checkResizing, 300);
-    }
-  };
 
   const checkResizing = () => {
 
@@ -77,6 +64,17 @@ export const AutoSizeContainer: React.FC<Props> = (props) => {
     if (isResizingRef.current)
       if (!isStillResizing)
         setResizing(false);
+  };
+
+  const handleWindowResize = (e: UIEvent) => {
+
+    if (!isResizing)
+      setResizing(true)
+
+    checkContainerSize();
+
+    window.clearTimeout(resizeTimeoutHandleRef.current);
+    resizeTimeoutHandleRef.current = window.setTimeout(checkResizing, 100);
   };
 
   const checkContainerSize = () => {
@@ -98,20 +96,36 @@ export const AutoSizeContainer: React.FC<Props> = (props) => {
     }
   };
 
+  const renderContent = () => {
+
+    if (containerRef.current === null)
+      return null;
+
+    if ((containerRef.current.offsetHeight !== height) ||
+      (containerRef.current.offsetWidth !== width)) {
+
+      return null;
+    };
+
+    if (!props.onRenderSizedChild)
+      return props.children;
+
+    if (showContentOnResize) {
+
+      return props.onRenderSizedChild(height, width);
+    }
+    else {
+
+      if (isResizing)
+        return null;
+
+      return props.onRenderSizedChild(height, width);
+    };
+  };
+
   // Helpers
-  const renderMode = (props.renderMode !== undefined) ? props.renderMode : 'HoldBack';
-  var canRenderChilds = true;
-  switch (renderMode) {
-    case 'Direct':
-      canRenderChilds = true;
-      break;
-    case 'HoldBack':
-      canRenderChilds = !isResizing;
-      break;
-    default:
-      canRenderChilds = !isResizing;
-      break;
-  }
+  const isScrollLocked = props.isScrollLocked !== undefined ? props.isScrollLocked : false;
+  const showContentOnResize = props.showContentOnResize !== undefined ? props.showContentOnResize : false;
 
   return (
     <Box
@@ -120,10 +134,10 @@ export const AutoSizeContainer: React.FC<Props> = (props) => {
         height: '100%',
         width: '100%',
         overflow: 'hidden',
-        ...props.contentStyle
+        ...props.containerStyle
       }}>
-      {canRenderChilds && props.onRenderSizedChild && props.onRenderSizedChild!(height, width)}
-      {canRenderChilds && !props.onRenderSizedChild && props.children}
+
+      {renderContent()}
     </Box>
   );
-};
+}
