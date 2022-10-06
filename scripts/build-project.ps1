@@ -9,7 +9,7 @@ $packageVersion = $packageData.version
 Write-Host "Build project [v$($packageVersion)]"
 
 # Build project
-npm run compile
+npm run build
 
 # Already included in "compile" script
 # Copy-Item -Path src\styles -Destination build\src -Recurse
