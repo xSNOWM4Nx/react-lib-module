@@ -2,7 +2,7 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import { Box, Typography, ListItem, Card, CardContent } from '@mui/material';
+import { Box, Typography, ListItem, Theme, CardContent } from '@mui/material';
 import { ILog, LogLevelEnumeration, LocalizeMethod } from '@daniel.neuweiler/ts-lib-module';
 import { useTheme } from '@mui/material/styles';
 import { AutoSizeContainer } from './../containers';
@@ -92,7 +92,6 @@ export const LogRenderer: React.FC<Props> = (props) => {
 
       <ListItem
         key={index}
-        button={false}
         style={{ ...style }}
         sx={{
           maxHeight: listItemSize - 16,
@@ -148,7 +147,7 @@ export const LogRenderer: React.FC<Props> = (props) => {
         return (
 
           <FixedSizeList
-            css={(theme) => ({
+            css={{
               overflowX: 'hidden',
               overflowY: 'auto',
               scrollbarWidth: 'thin',
@@ -159,7 +158,7 @@ export const LogRenderer: React.FC<Props> = (props) => {
               '&::-webkit-scrollbar-thumb': {
                 backgroundColor: theme.palette.secondary.main
               }
-            })}
+            }}
             height={height}
             itemCount={filteredLogs.length}
             itemSize={listItemSize}

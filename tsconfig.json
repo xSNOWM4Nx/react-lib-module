@@ -1,36 +1,35 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "ES2020",
     "outDir": "build",
+    "useDefineForClassFields": true,
     "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
     ],
-    "declaration": true,
-    "allowJs": true,
+    "module": "ESNext",
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
+    "isolatedModules": true,
     "noEmit": false,
+    "declaration": true,
     "jsx": "react-jsx",
-    //"jsxImportSource": "@emotion/react",
-    "isolatedModules": true
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src"
   ],
-  "exclude": [
-    "node_modules",
-    "build",
-    "dist",
-    "example",
-    "rollup.config.js"
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
   ]
 }

@@ -13,18 +13,17 @@ This project represents my standard library for generic react components that I 
 - [ts-lib-module](https://github.com/xSNOWM4Nx/ts-lib-module)
 - [TypeScript](https://github.com/microsoft/TypeScript)
 - [MUI](https://github.com/mui-org)
+- [Vite](https://vitejs.dev/)
 
 ## 🔮 Features:
 - Using "Hooks", "Context", "Suspense" and other popular React patterns.
 - Written entirely in TypeScript.
 - Provides the application with various services and props.
-- Delivers a range of components and functions that are used again and again.
 - Using styling components from [MUI](https://github.com/mui-org) project.
+- Using [Vite](https://vitejs.dev/) to serve the library
 
 <!-- ## ⌨️ Development:
 - Use the "devbuild_XXX" script to deploy the package to the corresponding cloned repositories. The package is then stored under "*/node_modules/@daniel.neuweiler/react-lib-module". -->
 
 ## 📑 License:
 - MIT © [xSNOWM4Nx](https://github.com/xSNOWM4Nx)
----
-This project was bootstrapped with [create-react-library](https://github.com/transitive-bullshit/create-react-library).
